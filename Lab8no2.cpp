@@ -1,6 +1,6 @@
 #include <stdio.h>
 int checkscore(char std[],char keys[]);
-
+int No1Check(char ans[][10], int n,char keys[]);
 
 int main() {
     int i,j;
@@ -27,4 +27,12 @@ int checkscore(char std[],char keys[]) {
             score++;
     }
     return score; 
+}
+int No1Check(char ans[][10], int n,char keys[]) {
+    int count = 0;
+    for(int i=0;i<n;i++) {
+        if(ans[i][0] == keys[0]) 
+            count++;
+    }
+    return count;
 }
