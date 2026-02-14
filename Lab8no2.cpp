@@ -1,7 +1,7 @@
 #include <stdio.h>
 int checkscore(char std[],char keys[]);
 int No1Check(char ans[][10], int n,char keys[]);
-
+int hardQ(char ans[][10], int n,char keys[]);
 int main() {
     int i,j;
     char ans[8][10]={
@@ -18,6 +18,7 @@ int main() {
     	printf("std %d => %d\n", (i+1), checkscore(ans[i],keys));
    	}
    	printf("People correct Question 1 = %d\n", No1Check(ans,sizeof(ans)/sizeof(ans[0]),keys));
+   	printf("Hardest question = %d\n", hardQ(ans,sizeof(ans)/sizeof(ans[0]),keys));
 }
 
 int checkscore(char std[],char keys[]) {
@@ -28,6 +29,7 @@ int checkscore(char std[],char keys[]) {
     }
     return score; 
 }
+
 int No1Check(char ans[][10], int n,char keys[]) {
     int count = 0;
     for(int i=0;i<n;i++) {
@@ -35,4 +37,19 @@ int No1Check(char ans[][10], int n,char keys[]) {
             count++;
     }
     return count;
+}
+int hardQ(char ans[][10], int n,char keys[]) {
+    int correct[10] = {0};
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<10;j++) {
+            if(ans[i][j] == keys[j])
+                correct[j]++;
+        }
+    }
+    int minIndex = 0;
+    for(int j=1;j<10;j++) {
+        if(correct[j] < correct[minIndex])
+            minIndex = j;
+    }
+    return minIndex + 1; 
 }
